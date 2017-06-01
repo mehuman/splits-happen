@@ -24,32 +24,32 @@ do
   #Add up score
   for ((i=0; i<${#scores[@]}; i++));
   do
-    frame=0
+    roll=0
     #If last frame
     if (( $totalRolls-3 <= $i )); then
       if [ ${scores[$i]} == "/" ]; then
-        frame=$((10-${scores[$i-1]}))
-	total=$(($total+$frame))
+        roll=$((10-${scores[$i-1]}))
+	total=$(($total+$roll))
       else
-	 frame=${scores[$i]}
-	 total=$(($total+$frame))
+	 roll=${scores[$i]}
+	 total=$(($total+$roll))
       fi
     #If strike
     elif [ ${scores[$i]} = 10 ]; then
 	if [ ${scores[$i+2]} == "/" ]; then
-          frame=$((10+${scores[$i+1]}+10-${scores[$i+1]}))
-          total=$(($total+$frame))
+          roll=$((10+${scores[$i+1]}+10-${scores[$i+1]}))
+          total=$(($total+$roll))
 	else
-          frame=$((10+${scores[$i+1]}+${scores[$i+2]}))
-          total=$(($total+$frame))
+          roll=$((10+${scores[$i+1]}+${scores[$i+2]}))
+          total=$(($total+$roll))
 	fi
     #If spare
     elif [ ${scores[$i]} == "/" ]; then
-        frame=$((10-${scores[$i-1]}+${scores[$i+1]}))
-        total=$(($total+$frame))
+        roll=$((10-${scores[$i-1]}+${scores[$i+1]}))
+        total=$(($total+$roll))
     else
-      frame=${scores[$i]}
-      total=$(($total+$frame))
+      roll=${scores[$i]}
+      total=$(($total+$roll))
     fi
   done
   echo "score: $score |  total: $total"
