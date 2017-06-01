@@ -6,13 +6,12 @@ do
   #Break scores into array
   scores=$(echo $score | grep -o .)
   scores=($scores)
-  echo ${scores[@]}
  
   #vars 
   total=0
   totalRolls=${#scores[@]}
-  echo $totalRolls
-  #Change vals to numbers
+
+  #Change chars to numbers
   for ((i=0; i<${#scores[@]}; i++));
   do
     if [ ${scores[$i]} == "X" ]; then
@@ -21,7 +20,6 @@ do
       scores[$i]=0
     fi
   done
-  #echo ${scores[@]}
   
   #Add up score
   for ((i=0; i<${#scores[@]}; i++));
@@ -53,8 +51,6 @@ do
       frame=${scores[$i]}
       total=$(($total+$frame))
     fi
-    #echo $i
-    echo "roll: $frame"
   done
-  echo "total: $total"
+  echo "score: $score |  total: $total"
 done < scores.txt
